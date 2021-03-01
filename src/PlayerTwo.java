@@ -40,6 +40,7 @@ public class PlayerTwo {
                 if (sendingNumber == 1)
                 {
                     System.out.println("End of the game: Player Two won!");
+                    break;
                 }
                 else
                 {
