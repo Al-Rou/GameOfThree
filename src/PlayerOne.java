@@ -11,7 +11,7 @@ public class PlayerOne {
     {
         System.out.println("Which one would you like to choose?(Type the number)");
         System.out.println("1) I enter my own number");
-        System.out.println("2) Computer goes automatically");
+        System.out.println("2) Computer shall go automatically");
         Scanner in = new Scanner(System.in);
         int choiceNumber = in.nextInt();
         int sendingNumber = 0;
