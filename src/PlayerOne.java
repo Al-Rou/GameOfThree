@@ -42,6 +42,7 @@ public class PlayerOne {
                 int receivedNumber = byteBufferResponse.getInt();
                 if (receivedNumber == 0)
                 {
+                    System.out.println("Player One lost the game!");
                     return;
                 }
                 else {
@@ -64,6 +65,12 @@ public class PlayerOne {
                 }
             }while (sendingNumber > 1);
             System.out.println("End of the game: Player One won!");
+            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+            byteBuffer.order(ByteOrder.BIG_ENDIAN);
+            byteBuffer.putInt(0);
+            DatagramPacket datagramPacket = new DatagramPacket(byteBuffer.array(), byteBuffer.position(),
+                    InetAddress.getLocalHost(), 5558);
+            datagramSocket.send(datagramPacket);
         }catch (Exception e)
         {
             e.printStackTrace();
