@@ -17,6 +17,40 @@ public class PlayerOne {
             DatagramPacket datagramPacket = new DatagramPacket(byteBuffer.array(), byteBuffer.position(),
                     InetAddress.getLocalHost(), 5558);
             datagramSocket.send(datagramPacket);
+
+            ByteBuffer byteBufferResponse = ByteBuffer.allocate(1024);
+            byteBufferResponse.order(ByteOrder.BIG_ENDIAN);
+            DatagramPacket datagramPacketRes = new DatagramPacket(byteBufferResponse.array(),
+                    byteBufferResponse.array().length);
+            datagramSocket.receive(datagramPacketRes);
+            int receivedNumber = byteBufferResponse.getInt();
+            int sendingNumber = 0;
+            if ((receivedNumber%3) == 0)
+            {
+                System.out.println(receivedNumber+" + 0 = "+receivedNumber);
+                sendingNumber = receivedNumber/3;
+                System.out.println("Sending number is "+(receivedNumber/3));
+            }
+            else if ((receivedNumber%3) == 1)
+            {
+                System.out.println(receivedNumber+" - 1 = "+(receivedNumber-1));
+                sendingNumber = (receivedNumber-1)/3;
+                System.out.println("Sending number is "+((receivedNumber-1)/3));
+            }
+            else
+            {
+                System.out.println(receivedNumber+" + 1 = "+(receivedNumber+1));
+                sendingNumber = (receivedNumber+1)/3;
+                System.out.println("Sending number is "+((receivedNumber+1)/3));
+            }
+            if (sendingNumber == 1)
+            {
+
+                System.out.println("Player Two won!");
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }
