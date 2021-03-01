@@ -17,7 +17,8 @@ public class PlayerTwo {
                 int receivedNumber = byteBuffer2.getInt();
                 if(receivedNumber == 0)
                 {
-
+                    System.out.println("Player Two lost the game!");
+                    break;
                 }
                 else {
                     int sendingNumber = 0;
