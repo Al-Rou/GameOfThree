@@ -40,6 +40,13 @@ public class PlayerTwo {
                 if (sendingNumber == 1)
                 {
                     System.out.println("End of the game: Player Two won!");
+                    ByteBuffer byteBuffer3 = ByteBuffer.allocate(1024);
+                    byteBuffer3.order(ByteOrder.BIG_ENDIAN);
+                    byteBuffer3.putInt(0);
+                    DatagramPacket datagramPacket3 = new DatagramPacket(byteBuffer3.array(),
+                            byteBuffer3.position(), datagramPacket2.getAddress(),
+                            datagramPacket2.getPort());
+                    datagramSocket.send(datagramPacket3);
                     break;
                 }
                 else

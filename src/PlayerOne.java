@@ -40,21 +40,27 @@ public class PlayerOne {
                         byteBufferResponse.array().length);
                 datagramSocket.receive(datagramPacketRes);
                 int receivedNumber = byteBufferResponse.getInt();
-                if ((receivedNumber % 3) == 0) {
-                    System.out.println(receivedNumber + " + 0 = " + receivedNumber);
-                    sendingNumber = receivedNumber / 3;
-                    System.out.println("Sending number is " + (receivedNumber / 3));
-                    System.out.println("************");
-                } else if ((receivedNumber % 3) == 1) {
-                    System.out.println(receivedNumber + " - 1 = " + (receivedNumber - 1));
-                    sendingNumber = (receivedNumber - 1) / 3;
-                    System.out.println("Sending number is " + ((receivedNumber - 1) / 3));
-                    System.out.println("************");
-                } else {
-                    System.out.println(receivedNumber + " + 1 = " + (receivedNumber + 1));
-                    sendingNumber = (receivedNumber + 1) / 3;
-                    System.out.println("Sending number is " + ((receivedNumber + 1) / 3));
-                    System.out.println("************");
+                if (receivedNumber == 0)
+                {
+                    return;
+                }
+                else {
+                    if ((receivedNumber % 3) == 0) {
+                        System.out.println(receivedNumber + " + 0 = " + receivedNumber);
+                        sendingNumber = receivedNumber / 3;
+                        System.out.println("Sending number is " + (receivedNumber / 3));
+                        System.out.println("************");
+                    } else if ((receivedNumber % 3) == 1) {
+                        System.out.println(receivedNumber + " - 1 = " + (receivedNumber - 1));
+                        sendingNumber = (receivedNumber - 1) / 3;
+                        System.out.println("Sending number is " + ((receivedNumber - 1) / 3));
+                        System.out.println("************");
+                    } else {
+                        System.out.println(receivedNumber + " + 1 = " + (receivedNumber + 1));
+                        sendingNumber = (receivedNumber + 1) / 3;
+                        System.out.println("Sending number is " + ((receivedNumber + 1) / 3));
+                        System.out.println("************");
+                    }
                 }
             }while (sendingNumber > 1);
             System.out.println("End of the game: Player One won!");
